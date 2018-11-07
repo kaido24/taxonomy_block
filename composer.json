@@ -1,0 +1,10 @@
+{
+  "name": "drupal/taxonomy_block",
+  "type": "drupal-module",
+  "description": "Simple structured taxonomy block",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://webpro.ee",
+  "minimum-stability": "dev",
+  "require": { }
+}

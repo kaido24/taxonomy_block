@@ -1,0 +1,7 @@
+name: 'Taxonomy block'
+type: module
+description: 'Menu like taxonomy block'
+core: 8.x
+package: 'Custom'
+dependencies:
+  - taxonomy

@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * @file
+ * Contains taxonomy_block.module.
+ */
+
+
+/**
+ * Implements hook_theme().
+ */
+function taxonomy_block_theme() {
+  return [
+    'taxonomy_block' => [
+      'variables' => ['terms' => NULL],
+    ],
+  ];
+}
