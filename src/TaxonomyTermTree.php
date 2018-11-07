@@ -32,7 +32,7 @@ class TaxonomyTermTree {
    * @return array
    */
   public function load($vocabulary) {
-    $terms = $this->entityTypeManager->getStorage('taxonomy_term')->loadTree($vocabulary);
+    $terms = $this->entityTypeManager->getStorage('taxonomy_term')->loadTree($vocabulary, 0, NULL, TRUE);
     $tree = [];
     foreach ($terms as $tree_object) {
       $this->buildTree($tree, $tree_object, $vocabulary);
@@ -52,20 +52,20 @@ class TaxonomyTermTree {
     if ($object->depth != 0) {
       return;
     }
-    $tree[$object->tid] = $object;
-    $tree[$object->tid]->children = [];
-    $object_children = &$tree[$object->tid]->children;
+    $tree[$object->id()] = $object;
+    $tree[$object->id()]->children = [];
+    $object_children = &$tree[$object->id()]->children;
 
-    $children = $this->entityTypeManager->getStorage('taxonomy_term')->loadChildren($object->tid);
+    $children = $this->entityTypeManager->getStorage('taxonomy_term')->loadChildren($object->id());
     if (!$children) {
       return;
     }
 
-    $child_tree_objects = $this->entityTypeManager->getStorage('taxonomy_term')->loadTree($vocabulary, $object->tid);
+    $child_tree_objects = $this->entityTypeManager->getStorage('taxonomy_term')->loadTree($vocabulary, $object->id(), NULL, TRUE);
 
     foreach ($children as $child) {
       foreach ($child_tree_objects as $child_tree_object) {
-        if ($child_tree_object->tid == $child->id()) {
+        if ($child_tree_object->id() == $child->id()) {
          $this->buildTree($object_children, $child_tree_object, $vocabulary);
         }
       }

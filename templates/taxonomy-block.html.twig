@@ -2,10 +2,10 @@
   {% if terms %}
     <ul class="level-{{ level }}">
     {% for term in terms %}
-      {% set term_path = path('entity.taxonomy_term.canonical', {'taxonomy_term': term.tid }) %}
+      {% set term_path = path('entity.taxonomy_term.canonical', {'taxonomy_term': term.id() }) %}
       {% set is_active = term_path == path('<current>') ? 'active' : 'not-active' %}
-      <li>
-        <a class="{{ is_active }}" href="{{ term_path }}">{{ term.name }}</a>
+      <li class="{{ is_active }}">
+        <a href="{{ term_path }}">{{ term.label() }}</a>
         {% if term.children %}
           {{ _self.term_links(term.children, level+1) }}
         {% endif %}
