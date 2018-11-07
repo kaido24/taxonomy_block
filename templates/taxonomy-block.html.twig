@@ -3,7 +3,7 @@
     <ul class="level-{{ level }}">
     {% for term in terms %}
       {% set term_path = path('entity.taxonomy_term.canonical', {'taxonomy_term': term.tid }) %}
-      {% set is_active = term_path == path('<current>') ? 'actice' : 'not-active' %}
+      {% set is_active = term_path == path('<current>') ? 'active' : 'not-active' %}
       <li>
         <a class="{{ is_active }}" href="{{ term_path }}">{{ term.name }}</a>
         {% if term.children %}
