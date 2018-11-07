@@ -6,5 +6,9 @@
   "license": "GPL-2.0+",
   "homepage": "https://webpro.ee",
   "minimum-stability": "dev",
+  "support": {
+    "issues": "https://github.com/kaido24/taxonomy_block/issues",
+    "source": "https://github.com/kaido24/taxonomy_block"
+  },
   "require": { }
 }
