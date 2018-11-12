@@ -12,7 +12,7 @@
 function taxonomy_block_theme() {
   return [
     'taxonomy_block' => [
-      'variables' => ['terms' => NULL],
+      'variables' => ['terms' => NULL, 'active' => '', 'parents' => NULL ],
     ],
   ];
 }
