@@ -1,13 +1,20 @@
-{% macro term_links(terms,  level) %}
+{% macro term_links(terms, level, active, parents) %}
   {% if terms %}
     <ul class="level-{{ level }}">
     {% for term in terms %}
+      {% set attr = create_attribute() %}
       {% set term_path = path('entity.taxonomy_term.canonical', {'taxonomy_term': term.id() }) %}
-      {% set is_active = term_path == path('<current>') ? 'active' : 'not-active' %}
-      <li class="{{ is_active }}">
+      {% if parents[term.id()] %}
+        {% set class = 'parent' %}
+      {% elseif term_path == path('<current>') %}
+        {% set class = 'active' %}
+      {% else %}
+        {% set class = 'not-active' %}
+      {% endif %}
+      <li {{ attr.addClass(class) }}>
         <a href="{{ term_path }}">{{ term.label() }}</a>
         {% if term.children %}
-          {{ _self.term_links(term.children, level+1) }}
+          {{ _self.term_links(term.children, level+1, active, parents) }}
         {% endif %}
       </li>
     {% endfor %}
@@ -19,4 +26,4 @@
 This allows the template to be extended without having to also duplicate the
 code above. @see http://twig.sensiolabs.org/doc/tags/macro.html
 #}
-{{ _self.term_links(terms, 0) }}
+{{ _self.term_links(terms, 0, active, parents) }}
