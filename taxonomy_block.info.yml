@@ -4,4 +4,4 @@ description: 'Menu like taxonomy block'
 core: 8.x
 package: 'Custom'
 dependencies:
-  - taxonomy
+  - core:taxonomy (>=8.6.3)
