@@ -70,5 +70,10 @@ class TaxonomyTermTree {
         }
       }
     }
+     uasort($object_children, function ($a, $b){
+      if($a->get("weight")->getValue()[0] == $b->get("weight")->getValue()[0])
+        return 0;
+      return ($a->get("weight")->getValue()[0] > $b->get("weight")->getValue()[0]) ? 1 : -1;
+    });
   }
 }
