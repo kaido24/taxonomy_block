@@ -5,7 +5,7 @@
       {% set attr = create_attribute() %}
       {% set term_path = path('entity.taxonomy_term.canonical', {'taxonomy_term': term.id() }) %}
       {% if parents[term.id()] %}
-        {% set class = 'parent' %}
+        {% set class = 'active-parent' %}
       {% elseif term_path == path('<current>') %}
         {% set class = 'active' %}
       {% else %}
